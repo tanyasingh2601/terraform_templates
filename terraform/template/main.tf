@@ -1,15 +1,34 @@
-resource "aws_efs_file_system" "efs-example" {
-   creation_token = "efs-example"
-   performance_mode = "generalPurpose"
-   throughput_mode = "bursting"
-   encrypted = "true"
-   tags = {
-     Name = "EfsExample"
-   }
- }
-
- resource "aws_efs_mount_target" "efs-mt-example" {
-   file_system_id  = aws_efs_file_system.efs-example.id
-   subnet_id = aws_subnet.subnet-efs.id
-   security_groups = [aws_security_group.ingress-efs-test.id]
- }
+resource "aws_instance" "instance" {
+  ami             = var.ami
+  instance_type   = var.instance_type
+  subnet_id       = var.subnet_id
+  # key_name        = var.key
+  user_data       = data.template_file.script.rendered
+  security_groups = var.security_groups
+tags = {
+    Name      = "EFS_TEST"
+    Terraform = "true"
+  }
+volume_tags = {
+    Name      = "EFS_TEST_ROOT"
+    Terraform = "true"
+  }
+}
+resource "aws_efs_file_system" "efs" {
+  creation_token   = "EFS Shared Data"
+  performance_mode = "generalPurpose"
+tags = {
+    Name = "EFS Shared Data"
+  }
+}
+resource "aws_efs_mount_target" "efs" {
+  file_system_id  = aws_efs_file_system.efs.id
+  subnet_id       = var.subnet_id
+  security_groups = var.security_groups
+}
+data "template_file" "script" {
+  template = file("script.tpl")
+  vars = {
+    efs_id = aws_efs_file_system.efs.id
+  }
+}
