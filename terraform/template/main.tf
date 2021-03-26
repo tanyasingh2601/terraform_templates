@@ -1,23 +1,15 @@
+resource "aws_efs_file_system" "efs-example" {
+   creation_token = "efs-example"
+   performance_mode = "generalPurpose"
+   throughput_mode = "bursting"
+   encrypted = "true"
+   tags = {
+     Name = "EfsExample"
+   }
+ }
 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.46.0"
-    }
-  }
-}
-
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-  features {}
-
-}
-
-
-
-# Create a resource group
-resource "azurerm_resource_group" "example_rg" {
-  name     = "asd
-  location = "eastus"
-}
+ resource "aws_efs_mount_target" "efs-mt-example" {
+   file_system_id  = "${aws_efs_file_system.efs-example.id}"
+   subnet_id = "${aws_subnet.subnet-efs.id}"
+   security_groups = ["${aws_security_group.ingress-efs-test.id}"]
+ }
