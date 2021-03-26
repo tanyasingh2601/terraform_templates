@@ -9,7 +9,7 @@ resource "aws_efs_file_system" "efs-example" {
  }
 
  resource "aws_efs_mount_target" "efs-mt-example" {
-   file_system_id  = "${aws_efs_file_system.efs-example.id}"
-   subnet_id = "${aws_subnet.subnet-efs.id}"
-   security_groups = ["${aws_security_group.ingress-efs-test.id}"]
+   file_system_id  = aws_efs_file_system.efs-example.id
+   subnet_id = aws_subnet.subnet-efs.id
+   security_groups = [aws_security_group.ingress-efs-test.id]
  }
