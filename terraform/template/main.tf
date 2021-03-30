@@ -1,8 +1,13 @@
+provider "aws" {
+  region = var.aws_region
+  access_key = var.access_key
+  secret_key = var.secret_key
+}
+
 #AWS Instance
 resource "aws_instance" "exampleEBS" {
     ami = "ami-03d315ad33b9d49c4"
     instance_type = "t2.micro"
-    region = var.aws_region
     availability_zone = var.aws_zone
   
   lifecycle {
@@ -13,7 +18,6 @@ resource "aws_instance" "exampleEBS" {
 #EBS Volume and Attachment
 
 resource "aws_ebs_volume" "exampleEBS" {
-  region = var.aws_region
   availability_zone = var.aws_zone
   size              = 40
 }
