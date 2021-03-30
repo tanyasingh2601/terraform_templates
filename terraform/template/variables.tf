@@ -17,8 +17,3 @@ variable "secret_key" {
   type = string
   description = "Secret key for AWS"
 }
-
-variable "user" {
-  type = list(string)
-  default = ["developers", "testers", "production"]
-}
