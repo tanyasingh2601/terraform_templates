@@ -1,7 +1,3 @@
-provider "aws" {
- region = "us-east-1" 
-}
-
 #AWS Instance
 resource "aws_instance" "exampleEBS" {
     ami = "ami-03d315ad33b9d49c4"
