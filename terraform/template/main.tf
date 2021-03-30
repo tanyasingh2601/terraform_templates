@@ -6,7 +6,7 @@ provider "aws" {
 resource "aws_instance" "exampleEBS" {
     ami = "ami-03d315ad33b9d49c4"
     instance_type = "t2.micro"
-    availability_zone = var.availability_zone
+    availability_zone = var.aws_zone
   
   lifecycle {
     ignore_changes = [ami]
@@ -16,7 +16,7 @@ resource "aws_instance" "exampleEBS" {
 #EBS Volume and Attachment
 
 resource "aws_ebs_volume" "exampleEBS" {
-  availability_zone = var.availability_zone
+  availability_zone = var.aws_zone
   size              = 40
 }
 
