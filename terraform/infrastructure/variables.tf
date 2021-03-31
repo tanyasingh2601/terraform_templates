@@ -47,7 +47,7 @@ variable "private_subnet_cidr" {
 }
 
 variable "PRIVATE_KEY_PATH_WEB" {
-  default = "~/Downloads/terraform-default.pem"
+  default = "/home/gslab/key/terraform-default.pem"
 }
 
 variable "EC2_USER" {
