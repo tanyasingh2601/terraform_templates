@@ -1,6 +1,16 @@
 variable "aws_region" {
-    type = string
-    default = "us-east-1"
+  type = string
+  description = "AWS region to launch servers."
+}
+
+variable "access_key" {
+  type = string
+  description = "Access key for AWS"
+}
+
+variable "secret_key" {
+  type = string
+  description = "Secret key for AWS"
 }
 
 variable "aws_availability_zoneA" {
@@ -44,18 +54,6 @@ variable "private_subnet_cidr" {
 variable "PRIVATE_KEY_PATH_WEB" {
   default = "~/Downloads/terraform-default.pem"
 }
-
-# variable "PUBLIC_KEY_PATH_WEB" {
-#   default = "~/london-region-key-pair-web.pub"
-# }
-
-# variable "PRIVATE_KEY_PATH_BACKEND" {
-#   default = "~/london-region-key-pair-backend"
-# }
-
-# variable "PUBLIC_KEY_PATH_BACKEND" {
-#   default = "~/london-region-key-pair-backend.pub"
-# }
 
 variable "EC2_USER" {
   default = "ubuntu"
