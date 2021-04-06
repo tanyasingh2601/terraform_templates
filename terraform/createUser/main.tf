@@ -26,3 +26,7 @@ resource "aws_iam_user_group_membership" "user-membership" {
   user   = aws_iam_user.iam_user.name
   groups = [var.profile]
 }
+
+locals {
+  password = aws_iam_user_login_profile.login_profile.encrypted_password
+}
