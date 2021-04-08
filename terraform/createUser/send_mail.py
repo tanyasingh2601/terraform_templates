@@ -7,14 +7,6 @@ from email.mime.base import MIMEBase
 from email import encoders
 import base64
 
-# # encrypt_pass = sys.argv[2]
-
-# pass_bytes = encrypt_pass.encode('ascii')
-# base64_bytes = base64.b64encode(pass_bytes) 
-
-# os.system("echo username: >> creds.txt; terraform output username >> creds.txt; echo password: >> creds.txt")
-# # os.system("terraform output password | jq -r . | base64 --decode | keybase pgp decrypt >> creds.txt")
-
 mail_content = '''Hello,
 This is a test mail.
 In this mail we are sending some attachments.
