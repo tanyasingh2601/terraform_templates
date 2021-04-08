@@ -25,3 +25,7 @@ variable "profile" {
 variable "username"{
     default = "Tanya"
 }
+
+variable "email" {
+  default = "tanya.singh@gslab.com"
+}
