@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 resource "aws_iam_user" "iam_user" {
-  name          = var.username
+  name          = var.email
   path          = "/"
   force_destroy = true
 }
@@ -27,6 +27,14 @@ resource "aws_iam_user_group_membership" "user-membership" {
   groups = [var.profile]
 }
 
-locals {
-  password = aws_iam_user_login_profile.login_profile.encrypted_password
+resource "null_resource" "send_mail" {
+  provisioner "local-exec" {
+     command = "echo credentials: >> creds.txt; echo ${var.email} >> creds.txt; echo ${aws_iam_user_login_profile.login_profile.encrypted_password} | base64 --decode | keybase pgp decrypt >> creds.txt; python3 send_mail.py ${var.email}"
+  }
+  depends_on = [
+    aws_iam_user.iam_user,
+    aws_iam_user_login_profile.login_profile,
+    aws_iam_user_group_membership.user-membership
+  ]
 }
+
