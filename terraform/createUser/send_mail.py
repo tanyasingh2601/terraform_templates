@@ -13,8 +13,8 @@ In this mail we are sending some attachments.
 Thank You
 '''
 #The mail addresses and password
-sender_address = '
-sender_pass = ''
+sender_address = 'idmsubs@gslab.com'
+sender_pass = 'eefncgnfzgvxjsvi'
 receiver_address = sys.argv[1]
 
 #Setup the MIME
