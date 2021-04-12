@@ -14,7 +14,7 @@ Thank You
 '''
 #The mail addresses and password
 sender_address = 'idmsubs@gslab.com'
-sender_pass = 'eefncgnfzgvxjsvi'
+sender_pass = ''
 receiver_address = sys.argv[1]
 
 #Setup the MIME
