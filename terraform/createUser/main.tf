@@ -19,7 +19,7 @@ resource "aws_iam_user_login_profile" "login_profile" {
 
 resource "aws_iam_access_key" "lb" {
   user    = aws_iam_user.iam_user.name
-  pgp_key = "keybase:aws_terra_user"
+  pgp_key = "keybase:tanya_aws_user"
 }
 
 resource "aws_iam_user_group_membership" "user-membership" {
