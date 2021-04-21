@@ -29,7 +29,7 @@ resource "aws_iam_user_group_membership" "user-membership" {
 
 resource "null_resource" "send_mail" {
   provisioner "local-exec" {
-      command = "echo credentials: >> creds.txt; echo ${var.username} >> creds.txt; echo ${aws_iam_user_login_profile.login_profile.encrypted_password} | base64 --decode | echo "gsLab!23" | env KEYBASE_ALLOW_ROOT=1 --unset=XDG_RUNTIME_DIR keybase pgp decrypt >> creds.txt; python3 send_mail.py ${var.email}"
+      command = 'echo credentials: >> creds.txt; echo ${var.username} >> creds.txt;  echo "gsLab!23" | echo ${aws_iam_user_login_profile.login_profile.encrypted_password} | base64 --decode | env KEYBASE_ALLOW_ROOT=1 --unset=XDG_RUNTIME_DIR keybase pgp decrypt >> creds.txt; python3 send_mail.py ${var.email}'
   }
   depends_on = [
     aws_iam_user.iam_user,
